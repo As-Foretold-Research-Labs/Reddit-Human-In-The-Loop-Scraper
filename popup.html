@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reddit OSINT Collector</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      width: 300px;
+      padding: 12px 16px;
+      background: #fff;
+      color: #1c1c1c;
+      margin: 0;
+    }
+    h1 {
+      font-size: 15px;
+      margin: 0 0 10px;
+      color: #ff4500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    h1 span.icon { font-size: 18px; }
+    .stat {
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: #555;
+    }
+    .stat strong { color: #1c1c1c; font-size: 16px; }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .toggle-row label { cursor: pointer; }
+    input[type="checkbox"] { cursor: pointer; accent-color: #ff4500; width: 16px; height: 16px; }
+    .btn-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      font-size: 12px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      background: #f6f7f8;
+      color: #1c1c1c;
+    }
+    button:hover { background: #e8e8e8; }
+    button.danger { border-color: #c00; color: #c00; }
+    button.danger:hover { background: #fff0f0; }
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 10px 0 4px;
+    }
+    .item-preview {
+      border-left: 3px solid #ff4500;
+      padding: 4px 8px;
+      margin-bottom: 6px;
+      background: #fafafa;
+      border-radius: 0 4px 4px 0;
+    }
+    .item-preview .meta {
+      color: #888;
+      font-size: 11px;
+      margin-bottom: 2px;
+    }
+    .item-preview .text {
+      color: #333;
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .badge {
+      display: inline-block;
+      background: #edeff1;
+      border-radius: 3px;
+      padding: 0 4px;
+      font-size: 11px;
+      color: #555;
+      margin-left: 4px;
+    }
+    a.options-link {
+      font-size: 11px;
+      color: #0079d3;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a.options-link:hover { text-decoration: underline; }
+    #status { font-size: 11px; color: #888; margin-top: 4px; min-height: 16px; }
+  </style>
+</head>
+<body>
+  <h1><span class="icon">🤖</span> Reddit OSINT Collector</h1>
+
+  <div class="stat">
+    Total collected: <strong id="total">0</strong>
+    <span class="badge" id="sessionBadge">session: 0</span>
+  </div>
+
+  <div class="toggle-row">
+    <input type="checkbox" id="activeToggle" checked>
+    <label for="activeToggle">Active collection</label>
+    <a class="options-link" id="openOptions">⚙ Settings</a>
+  </div>
+
+  <div class="btn-row">
+    <button id="exportJson">Export JSON</button>
+    <button id="exportCsv">Export CSV</button>
+    <button id="clearDb" class="danger">Clear DB</button>
+  </div>
+
+  <div id="status"></div>
+
+  <div class="section-title">Last 5 collected</div>
+  <div id="last5"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

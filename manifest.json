@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Reddit OSINT Collector",
+  "version": "0.1",
+  "description": "Passively collects Reddit post and comment data from the DOM during normal browsing.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.reddit.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["*://*.reddit.com/*"],
+      "js": ["selectors.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+}
